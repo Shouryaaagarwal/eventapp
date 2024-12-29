@@ -76,18 +76,18 @@ export async function POST(req: Request) {
     //   })
     // } 
 
-    if (newUser) {
-        try {
-          await clerkClient.users.updateUserMetadata(id, {
-            publicMetadata: {
-              userId: newUser._id,
-            },
-          });
-        } catch (error) {
-          console.error("Failed to update user metadata:", error);
-          throw new Error("User metadata update failed");
-        }
-      }
+    // if (newUser) {
+    //     try {
+    //       await clerkClient.users.updateUserMetadata(id, {
+    //         publicMetadata: {
+    //           userId: newUser._id,
+    //         },
+    //       });
+    //     } catch (error) {
+    //       console.error("Failed to update user metadata:", error);
+    //       throw new Error("User metadata update failed");
+    //     }
+    //   }
       
 
     return NextResponse.json({ message: 'OK', user: newUser })
