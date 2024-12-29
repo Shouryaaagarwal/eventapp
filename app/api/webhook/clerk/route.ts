@@ -68,26 +68,20 @@ export async function POST(req: Request) {
 
     const newUser = await createUser(user);
 
-    // if(newUser) {
-    //   await clerkClient.users.updateUserMetadata(id, {
-    //     publicMetadata: {
-    //       userId: newUser._id
-    //     }
-    //   })
-    // } 
 
-    // if (newUser) {
-    //     try {
-    //       await clerkClient.users.updateUserMetadata(id, {
-    //         publicMetadata: {
-    //           userId: newUser._id,
-    //         },
-    //       });
-    //     } catch (error) {
-    //       console.error("Failed to update user metadata:", error);
-    //       throw new Error("User metadata update failed");
-    //     }
-    //   }
+    const client = clerkClient();
+    if (newUser) {
+        try {
+            await (await client).users.updateUserMetadata(id, {
+                publicMetadata: {
+                  userId: newUser._id,
+                },
+              });
+        } catch (error) {
+          console.error("Failed to update user metadata:", error);
+          throw new Error("User metadata update failed");
+        }
+      }
       
 
     return NextResponse.json({ message: 'OK', user: newUser })
